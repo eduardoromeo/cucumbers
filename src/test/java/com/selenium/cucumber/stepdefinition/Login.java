@@ -21,7 +21,7 @@ public class Login {
 
     @Given("el usuario accede a la plataforma")
     public void el_usuario_accede_a_la_plataforma() {
-        System.out.println("Paso 1: El usuario accede a la plataforma");
+        System.out.println("Paso 1: el_usuario_accede_a_la_plataforma");
         if (loginPage == null) {
             loginPage = new LoginPage(driver);
             wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -31,30 +31,30 @@ public class Login {
         assertEquals("OrangeHRM", tituloActual , "Titulo actual " + tituloActual);
     }
 
-    @When("agregar usuario correcto")
-    public void agregar_usuario_correcto() {
-        System.out.println("Paso 2: Agregar usuario correcto");
+    @When("agrega usuario correcto")
+    public void agrega_usuario_correcto() {
+        System.out.println("Paso 2: agrega_usuario_correcto");
         loginPage.enterUsername("Admin");
         String valorActual = loginPage.getUsernameField().getAttribute("value");
         assertEquals(valorActual, "Admin", "El usuario no coincide");
     }
 
-    @When("agregar password correcto")
-    public void agregar_password_correcto() {
-        System.out.println("Paso 3: Agregar password correcto");
+    @When("agrega password correcto")
+    public void agrega_password_correcto() {
+        System.out.println("Paso 3: agrega_password_correcto");
         loginPage.enterPassword("admin123");
         String valorActual = loginPage.getPasswordField().getAttribute("value");
         assertEquals(valorActual, "admin123", "El password no coincide");
     }
 
-    @Then("iniciar sesion a la plataforma")
-    public void iniciar_sesion_a_la_plataforma() {
-        System.out.println("Paso 4: Iniciar sesion en la plataforma");
+    @Then("inicia sesion a la plataforma")
+    public void inicia_sesion_a_la_plataforma() {
+        System.out.println("Paso 4: inicia_sesion_a_la_plataforma");
         loginPage.clickOnLoginButton();
         String urlEsperada = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-        // Esperar a que la URL cambie
         wait.until(ExpectedConditions.urlToBe(urlEsperada));
         String urlActual = driver.getCurrentUrl();
-        assertEquals(urlActual, urlEsperada, "No se ha redirigido a la url esperada");
+        assertEquals(urlActual, urlEsperada, "NO se ha redirigido a la url esperada");
+
     }
 }
